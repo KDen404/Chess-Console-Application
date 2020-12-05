@@ -10,6 +10,9 @@ public:
 
 	void initialize();
 	void set_board();
+	void get_board();
+
+	tiles get_board_tile_id(unsigned int);
 
 private:
 	tiles a1;
@@ -84,4 +87,11 @@ private:
 	tiles h7;
 	tiles h8;
 	
+	int object_list_counter;
+	tiles object_list[64];
+
+	unsigned int real_x;
+	unsigned int real_y;
+
+	char board_buffer[48][24];
 };

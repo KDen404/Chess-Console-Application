@@ -10,7 +10,7 @@ public:
 	void initialize(bool, string, char);
 
 	void set_tile();
-	void get_tile();
+	char get_tile(unsigned int&,unsigned int&);
 
 
 private:

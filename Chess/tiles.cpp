@@ -1,6 +1,6 @@
 #include "tiles.h"
-#define WHITE_TILE 0xDB
-#define BLACK_TILE 0xFF
+#define WHITE_TILE char(178)
+#define BLACK_TILE char(178)
 
 
 
@@ -27,15 +27,15 @@ void tiles::initialize(bool u, string i, char c) {
 void tiles::set_tile() {
 	switch (tile_color_specifier) {
 		case 'b':
-			tile_color = BLACK_TILE;
+			tile_color = 'b';
 			break;
 		case 'w':
-			tile_color = WHITE_TILE;
+			tile_color = 'w';
 			break;
 	}
 
-	for (int y; y < 3; y++) {
-		for (int x; x < 6; x++) {
+	for (int y = 0; y < 3; y++) {
+		for (int x = 0; x < 6; x++) {
 			tile[x][y] = tile_color;
 
 			if (used && y == 1 && x == 3){
@@ -52,7 +52,7 @@ void tiles::set_tile() {
 
 }
 
-void tiles::get_tile() {
-
-	return;
+char tiles::get_tile(unsigned int &x,  unsigned int &y) {
+	return tile[x][y];
 }
+
