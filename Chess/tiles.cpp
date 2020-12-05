@@ -10,7 +10,7 @@ tiles::tiles() {
 	tile_id = "";
 	tile_color_specifier = ' ';
 	tile_color = ' ';
-	tile[6][3];
+	tile[8][4];
 
 	player = 0;
 	figure = ' ';
@@ -52,7 +52,7 @@ void tiles::set_tile() {
 
 }
 
-char tiles::get_tile(unsigned int &x,  unsigned int &y) {
+char tiles::get_tile(unsigned int x,  unsigned int y) {
 	return tile[x][y];
 }
 

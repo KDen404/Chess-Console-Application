@@ -90,8 +90,8 @@ private:
 	int object_list_counter;
 	tiles object_list[64];
 
-	unsigned int real_x;
-	unsigned int real_y;
+	signed int real_x;
+	signed int real_y;
 
-	char board_buffer[48][24];
+	char board_buffer[49][25];
 };

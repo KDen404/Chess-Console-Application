@@ -73,13 +73,14 @@ board::board() {
 	tiles h7;
 	tiles h8;
 
-	int object_list_counter = 0;
+	object_list_counter = 0;
 
 	tiles object_list[64] = {a8,b8,c8,d8,e8,f8,g8,h8,a7,b7,c7,d7,e7,f7,g7,h7,a6,b6,c6,d6,e6,f6,g6,h6,a5,b5,c5,d5,e5,f5,g5,h5,a4,b4,c4,d4,e4,f4,g4,h4,a3,b3,c3,d3,e3,f3,g3,h3,a2,b2,c2,d2,e2,f2,g2,h2,a1,b1,c1,d1,e1,f1,g1,h1};
 
-	real_x = 0;
-	real_y = 0;
+	real_x = -1;
+	real_y = -1;
 
+	board_buffer[48][24] = {};
 }
 
 board::~board() {}
@@ -117,16 +118,14 @@ void board::set_board() {
 	for (int y = 0; y < 8; y++) {
 		for (int tile_y = 0; tile_y < 3; tile_y++) {
 
-			for (int x = 0; x < 8; x++) {
-				
+			for (int x = 0; x < 8; x++, o++) {
+				real_y++;
 				for (int tile_x = 0; tile_x < 6; tile_x++) {
 
-					board_buffer[real_x][real_y] = get_board_tile_id(o).get_tile(real_x, real_y );
 					real_x++;
+					board_buffer[real_x][real_y] = get_board_tile_id(o).get_tile(tile_x, tile_y );
 				}
-				o++;
 			}
-			real_y++;
 		}
 	}
 	object_list_counter = 0;
