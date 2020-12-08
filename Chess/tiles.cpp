@@ -1,6 +1,6 @@
 #include "tiles.h"
 #define WHITE_TILE char(178)
-#define BLACK_TILE char(178)
+#define BLACK_TILE char(173)
 
 
 
@@ -10,7 +10,7 @@ tiles::tiles() {
 	tile_id = "";
 	tile_color_specifier = ' ';
 	tile_color = ' ';
-	tile[8][4];
+	tile[6][3];
 
 	player = 0;
 	figure = ' ';
@@ -52,7 +52,12 @@ void tiles::set_tile() {
 
 }
 
-char tiles::get_tile(unsigned int x,  unsigned int y) {
-	return tile[x][y];
+char tiles::get_tile(int x, int y) {
+	unsigned int buffer_x = x % 6;
+	unsigned int buffer_y = y % 3;
+
+	char buffer = tile[buffer_x][buffer_y];
+	return buffer;
+		
 }
 

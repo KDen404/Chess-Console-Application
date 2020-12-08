@@ -12,7 +12,7 @@ public:
 	void set_board();
 	void get_board();
 
-	tiles get_board_tile_id(unsigned int);
+	tiles get_board_tile_id(int);
 
 private:
 	tiles a1;
@@ -88,10 +88,10 @@ private:
 	tiles h8;
 	
 	int object_list_counter;
-	tiles object_list[64];
+	tiles object_list[8][8];
 
-	signed int real_x;
-	signed int real_y;
+	int real_x;
+	int real_y;
 
-	char board_buffer[49][25];
+	char board_buffer[48][24];
 };

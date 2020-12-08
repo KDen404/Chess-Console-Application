@@ -1,4 +1,4 @@
-#pragma once
+                           #pragma once
 #include <iostream>
 using namespace std;
 
@@ -10,7 +10,7 @@ public:
 	void initialize(bool, string, char);
 
 	void set_tile();
-	char get_tile(unsigned int, unsigned int);
+	char get_tile(int, int);
 
 
 private:
@@ -25,4 +25,4 @@ private:
 
 	string tile_id;
 	char tile[6][3];
-};
+};                                                                                                                                                                                                                                                                                                                                                    

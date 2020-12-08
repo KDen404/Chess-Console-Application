@@ -75,12 +75,19 @@ board::board() {
 
 	object_list_counter = 0;
 
-	tiles object_list[64] = {a8,b8,c8,d8,e8,f8,g8,h8,a7,b7,c7,d7,e7,f7,g7,h7,a6,b6,c6,d6,e6,f6,g6,h6,a5,b5,c5,d5,e5,f5,g5,h5,a4,b4,c4,d4,e4,f4,g4,h4,a3,b3,c3,d3,e3,f3,g3,h3,a2,b2,c2,d2,e2,f2,g2,h2,a1,b1,c1,d1,e1,f1,g1,h1};
+	tiles object_list[8][8] = { {a8, b8, c8, d8, e8, f8, g8, h8 },
+								{a7, b7, c7, d7, e7, f7, g7, h7},
+								{a6, b6, c6, d6, e6, f6, g6, h6},
+								{a5, b5, c5, d5, e5, f5, g5, h5},
+								{a4, b4, c4, d4, e4, f4, g4, h4},
+								{a3, b3, c3, d3, e3, f3, g3, h3},
+								{a2, b2, c2, d2, e2, f2, g2, h2},
+								{a1, b1, c1, d1, e1, f1, g1, h1} };
 
 	real_x = -1;
 	real_y = -1;
 
-	board_buffer[48][24] = {};
+	board_buffer[47][23] = {};
 }
 
 board::~board() {}
@@ -92,54 +99,46 @@ void board::initialize() {
 
 	bool c = 1;
 
-	for (unsigned int n = 0; n < 64; n++) {
-		if (c == 1) {
-			color = 'w';
-			c = 0;
-		}
-		else if (c == 0) {
-			color = 'b';
-			c = 1;
-		}
+	for (unsigned int y = 0; y < 8; y++) {
+		for (unsigned int x = 0; x < 8; x++) {
+			if (c == 1) {
+				color = 'w';
+				c = 0;
+			}
+			else if (c == 0) {
+				color = 'b';
+				c = 1;
+			}
 
-		object_list[n].initialize(used, id, color);
-		object_list[n].set_tile();
+			if (x == 7 && c == 0) { c = 1; }
+			else if (x == 7 && c == 1) { c = 0; }
+
+			object_list[x][y].initialize(used, id, color);
+			object_list[x][y].set_tile();
+		}
 	}
-
-
-
-
-	
 }
 
 void board::set_board() {
-	unsigned int o = 0;
+	int ox = -1;
+	int oy = -1;
 
-	for (int y = 0; y < 8; y++) {
-		for (int tile_y = 0; tile_y < 3; tile_y++) {
+	for (int y = 0; y < 24; y++) {
+		for (int x = 0; x < 48; x++) {
+			if (x % 8 == 0) { ox++; }
+			if (y % 8 == 0) { oy++; }
+			board_buffer[x][y] = object_list[ox][oy].get_tile(x,y);
 
-			for (int x = 0; x < 8; x++, o++) {
-				real_y++;
-				for (int tile_x = 0; tile_x < 6; tile_x++) {
-
-					real_x++;
-					board_buffer[real_x][real_y] = get_board_tile_id(o).get_tile(tile_x, tile_y );
-				}
-			}
 		}
 	}
-	object_list_counter = 0;
 }
 
 void board::get_board() {
-	for (unsigned int y = 0; y < 24; y++) {
-		for (unsigned int x = 0; x < 48; x++) {
+	for (int y = 0; y < 24; y++) {
+		for (int x = 0; x < 48; x++) {
 			cout << board_buffer[x][y];
 		}
 		cout << endl;
 	}
 }
 
-tiles board::get_board_tile_id(unsigned int z) {
-	return object_list[z];
-}
